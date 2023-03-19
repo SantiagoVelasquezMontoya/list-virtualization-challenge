@@ -1,15 +1,15 @@
-$text-color: #363636
+$text-color: #1A2D31
 
 *
   margin: 0
   padding: 0
   box-sizing: border-box
-  font-family: 'Candara'
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
 
 body
   height: 100%
   width: 100%
-  background: ghostwhite
+  background: #F6F7F8
 
 .App
   padding: 0 2em
@@ -17,7 +17,31 @@ body
   justify-content: center
   align-items: center
   flex-direction: column
+  width: 100%
+  header
+    display: flex
+    width: 100%
+    max-width: 900px
+    justify-content: flex-end
+    align-items: center
   h1
-    font-size: 3rem
+    font-size: 2rem
     color: $text-color
     margin: 3rem 0
+    margin-right: 12rem
+  button
+    border: 2px solid $text-color
+    padding: 0.6em 1.2em
+    font-size: 1.1em
+    font-weight: 500
+    font-family: inherit
+    cursor: pointer
+    transition: border-color 0.25s
+    color: $text-color
+    backgrund: #fff
+    transition: .1s ease-in-out
+    &:hover
+      background: #1A2D31
+      color: #fff
+
+

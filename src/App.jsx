@@ -15,7 +15,10 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>Virtualized List</h1>
+      <header>
+        <h1>Virtualized List</h1>
+        <button>Add new item</button>
+      </header>
       <div className='content'>
         <VirtualizedList items={items} itemHeight={100} />
       </div>

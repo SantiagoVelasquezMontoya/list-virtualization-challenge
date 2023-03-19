@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import './VirtualizedList.sass';
 import ListItem from '../ListItem/ListItem';
 
@@ -10,10 +10,8 @@ export default function VirtualizedList({ items, itemHeight }) {
   function handleScroll() {
     const scrollTop = outerContainerRef.current.scrollTop;
     const scrollBottom = scrollTop + outerContainerRef.current.clientHeight;
-
     const startIndex = Math.floor(scrollTop / itemHeight);
     const endIndex = Math.ceil(scrollBottom / itemHeight);
-    console.log(startIndex, endIndex);
     setVisibleItems(items.slice(startIndex, endIndex));
   }
 
@@ -24,8 +22,7 @@ export default function VirtualizedList({ items, itemHeight }) {
       ref={outerContainerRef}
     >
       <ul className='list-container' style={{ height: listContainerHeight }}>
-        {visibleItems.map((item, index) => {
-          //   const position = item.split(' ')[1];
+        {visibleItems.map((item) => {
           return (
             <ListItem
               key={item.id}
