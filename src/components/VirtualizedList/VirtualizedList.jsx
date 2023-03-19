@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './VirtualizedList.sass';
+import ListItem from '../ListItem/ListItem';
 
 export default function VirtualizedList({ items, itemHeight }) {
   const [visibleItems, setVisibleItems] = useState(items.slice(0, 6));
@@ -22,20 +23,14 @@ export default function VirtualizedList({ items, itemHeight }) {
       onScroll={handleScroll}
       ref={outerContainerRef}
     >
-      <div className='list-container' style={{ height: listContainerHeight }}>
+      <ul className='list-container' style={{ height: listContainerHeight }}>
         {visibleItems.map((item, index) => {
           const position = item.split(' ')[1];
           return (
-            <div
-              key={item}
-              className='list-item'
-              style={{ height: itemHeight, top: position * itemHeight }}
-            >
-              {item}
-            </div>
+            <ListItem item={item} position={position} height={itemHeight} />
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }
