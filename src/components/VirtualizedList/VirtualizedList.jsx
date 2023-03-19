@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './VirtualizedList.sass';
 
 export default function VirtualizedList({ items, itemHeight }) {
-  const [visibleItems, setVisibleItems] = useState(items.slice(0, 14));
+  const [visibleItems, setVisibleItems] = useState(items.slice(0, 6));
   const outerContainerRef = useRef();
   const listContainerHeight = items.length * itemHeight;
 
@@ -24,11 +24,12 @@ export default function VirtualizedList({ items, itemHeight }) {
     >
       <div className='list-container' style={{ height: listContainerHeight }}>
         {visibleItems.map((item, index) => {
+          const position = item.split(' ')[1];
           return (
             <div
               key={item}
               className='list-item'
-              style={{ height: itemHeight, top: index * itemHeight }}
+              style={{ height: itemHeight, top: position * itemHeight }}
             >
               {item}
             </div>
