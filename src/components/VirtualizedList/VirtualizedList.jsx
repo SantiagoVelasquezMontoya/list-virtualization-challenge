@@ -25,9 +25,14 @@ export default function VirtualizedList({ items, itemHeight }) {
     >
       <ul className='list-container' style={{ height: listContainerHeight }}>
         {visibleItems.map((item, index) => {
-          const position = item.split(' ')[1];
+          //   const position = item.split(' ')[1];
           return (
-            <ListItem item={item} position={position} height={itemHeight} />
+            <ListItem
+              key={item.id}
+              item={item}
+              position={item.position}
+              height={itemHeight}
+            />
           );
         })}
       </ul>
