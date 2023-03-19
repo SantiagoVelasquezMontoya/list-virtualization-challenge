@@ -1,6 +1,7 @@
 import VirtualizedList from './components/VirtualizedList/VirtualizedList';
-import generateData from './components/utils/GenerateData';
+import { generateData } from './utils/utils';
 import './App.sass';
+import VirtualizedListHeader from './components/VirtualizedListHeader/VirtualizedListHeader';
 
 function App() {
   const items = generateData();
@@ -10,7 +11,8 @@ function App() {
         <h1>Virtualized List</h1>
         <button>Add new item</button>
       </header>
-      <div className='content'>
+      <div className='table'>
+        <VirtualizedListHeader columns={Object.keys(items[0])} />
         <VirtualizedList items={items} itemHeight={100} />
       </div>
     </div>

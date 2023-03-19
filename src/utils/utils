@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export default function generateData() {
+export function generateData() {
   return Array.from({ length: 10000 }).map((_, i) => {
     return {
       name: faker.commerce.product(),
@@ -10,4 +10,8 @@ export default function generateData() {
       position: i,
     };
   });
+}
+
+export function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
 }
