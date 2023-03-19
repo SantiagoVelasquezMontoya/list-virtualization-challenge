@@ -1,18 +1,9 @@
 import VirtualizedList from './components/VirtualizedList/VirtualizedList';
+import generateData from './components/utils/GenerateData';
 import './App.sass';
-import { faker } from '@faker-js/faker';
 
 function App() {
-  const items = Array.from({ length: 10000 }).map((_, i) => {
-    return {
-      name: faker.commerce.product(),
-      price: faker.commerce.price(),
-      description: faker.commerce.productDescription(),
-      id: faker.datatype.uuid(),
-      position: i,
-    };
-  });
-
+  const items = generateData();
   return (
     <div className='App'>
       <header>
