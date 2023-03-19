@@ -11,10 +11,7 @@ function App() {
         <h1>Virtualized List</h1>
         <button>Add new item</button>
       </header>
-      <div className='content'>
-        <VirtualizedListHeader columns={Object.keys(items[0])} />
-        <VirtualizedList items={items} itemHeight={100} />
-      </div>
+      <VirtualizedList items={items} itemHeight={100} />
     </div>
   );
 }

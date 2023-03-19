@@ -7,8 +7,8 @@ export default function VirtualizedListHeader({ columns }) {
   return (
     <div className='list-header'>
       <div className='left col'>{capitalize(name)}</div>
-      <div className='middle col'>{capitalize(description)}</div>
       <div className='right col'>{capitalize(price)}</div>
+      <div className='middle col'>{capitalize(description)}</div>
     </div>
   );
 }

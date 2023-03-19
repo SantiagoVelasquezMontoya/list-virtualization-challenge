@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './VirtualizedList.sass';
 import ListItem from '../ListItem/ListItem';
+import VirtualizedListHeader from '../VirtualizedListHeader/VirtualizedListHeader';
 
-export default function VirtualizedList({ items, itemHeight }) {
+export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
   const [visibleItems, setVisibleItems] = useState(items.slice(0, 6));
   const outerContainerRef = useRef();
   const listContainerHeight = items.length * itemHeight;
@@ -15,24 +16,37 @@ export default function VirtualizedList({ items, itemHeight }) {
     setVisibleItems(items.slice(startIndex, endIndex));
   }
 
+  function scrollToTop() {
+    outerContainerRef.current.scrollTop = 0;
+  }
+
   return (
-    <div
-      className='outer-container'
-      onScroll={handleScroll}
-      ref={outerContainerRef}
-    >
-      <ul className='list-container' style={{ height: listContainerHeight }}>
-        {visibleItems.map((item) => {
-          return (
-            <ListItem
-              key={item.id}
-              item={item}
-              position={item.position}
-              height={itemHeight}
-            />
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <div className='main-container'>
+        <VirtualizedListHeader columns={Object.keys(items[0])} />
+        <div
+          className='outer-container'
+          onScroll={handleScroll}
+          ref={outerContainerRef}
+        >
+          <ul
+            className='list-container'
+            style={{ height: listContainerHeight }}
+          >
+            {visibleItems.map((item) => {
+              return (
+                <ListItem
+                  key={item.id}
+                  item={item}
+                  position={item.position}
+                  height={itemHeight}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+      <button onClick={scrollToTop}>Scroll to Top</button>
+    </>
   );
 }
