@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-export function generateData() {
-  return Array.from({ length: 10000 }).map((_, i) => {
+export function generateData(amount) {
+  return Array.from({ length: amount }).map((_, i) => {
     return {
       name: faker.commerce.product(),
       price: faker.commerce.price(),
@@ -10,6 +10,16 @@ export function generateData() {
       position: i,
     };
   });
+}
+
+export function generateEntry(lastEntry) {
+  return {
+    name: faker.commerce.product(),
+    price: faker.commerce.price(),
+    description: faker.commerce.productDescription(),
+    id: faker.datatype.uuid(),
+    position: lastEntry + 1,
+  };
 }
 
 export function capitalize(str) {
