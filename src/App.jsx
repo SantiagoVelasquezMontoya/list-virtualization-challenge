@@ -1,21 +1,30 @@
 import VirtualizedList from './components/VirtualizedList/VirtualizedList';
 import { generateData, generateEntry } from './utils/utils';
+import { useState, useMemo } from 'react';
 import './App.sass';
 
+const itemHeight = 100;
+const itemOffset = 400;
 function App() {
-  const items = generateData(100000);
+  const [items, setItems] = useState(useMemo(() => generateData(100000), []));
+  const [scroll, setScroll] = useState(0);
 
   function newEntry() {
-    items.push(generateEntry(items.length - 1));
-    alert('New entry was added to the bottom of the list');
+    setItems((prev) => [...prev, generateEntry(items.length - 1)]);
+    setScroll(items.length * itemHeight - itemOffset);
   }
+
   return (
     <div className='App'>
       <header>
         <h1>Virtualized List</h1>
         <button onClick={newEntry}>Add new item</button>
       </header>
-      <VirtualizedList items={items} itemHeight={100} />
+      <VirtualizedList
+        items={items}
+        itemHeight={itemHeight}
+        scrollPosition={scroll}
+      />
     </div>
   );
 }

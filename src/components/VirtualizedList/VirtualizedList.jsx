@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './VirtualizedList.sass';
 import ListItem from '../ListItem/ListItem';
 import VirtualizedListHeader from '../VirtualizedListHeader/VirtualizedListHeader';
@@ -19,6 +19,11 @@ export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
   function scrollToTop() {
     outerContainerRef.current.scrollTop = 0;
   }
+
+  useEffect(() => {
+    //Scroll to last item on the bottom of the list
+    outerContainerRef.current.scrollTop = scrollPosition;
+  }, [scrollPosition]);
 
   return (
     <>
