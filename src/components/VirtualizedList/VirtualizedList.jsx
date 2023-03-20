@@ -30,6 +30,7 @@ export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
       <div className='main-container'>
         <VirtualizedListHeader columns={Object.keys(items[0])} />
         <div
+          data-testid='outer-container'
           className='outer-container'
           onScroll={handleScroll}
           ref={outerContainerRef}
