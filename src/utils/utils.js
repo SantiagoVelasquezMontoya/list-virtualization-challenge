@@ -7,18 +7,16 @@ export function generateData(amount) {
       price: faker.commerce.price(),
       description: faker.commerce.productDescription(),
       id: faker.datatype.uuid(),
-      position: i,
     };
   });
 }
 
-export function generateEntry(lastEntry) {
+export function generateEntry() {
   return {
     name: faker.commerce.product(),
     price: faker.commerce.price(),
     description: faker.commerce.productDescription(),
     id: faker.datatype.uuid(),
-    position: lastEntry + 1,
   };
 }
 

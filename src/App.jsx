@@ -10,7 +10,7 @@ function App() {
   const [scroll, setScroll] = useState(0);
 
   function newEntry() {
-    setItems((prev) => [...prev, generateEntry(items.length - 1)]);
+    setItems((prev) => [...prev, generateEntry()]);
     setScroll(items.length * itemHeight - itemOffset);
   }
 

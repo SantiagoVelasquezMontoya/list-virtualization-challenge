@@ -4,7 +4,11 @@ import ListItem from '../ListItem/ListItem';
 import VirtualizedListHeader from '../VirtualizedListHeader/VirtualizedListHeader';
 
 export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
-  const [visibleItems, setVisibleItems] = useState(items.slice(0, 6));
+  const [visibleItems, setVisibleItems] = useState(
+    items.slice(0, 6).map((item, index) => {
+      return { ...item, position: index };
+    })
+  );
   const outerContainerRef = useRef();
   const listContainerHeight = items.length * itemHeight;
 
@@ -13,7 +17,13 @@ export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
     const scrollBottom = scrollTop + outerContainerRef.current.clientHeight;
     const startIndex = Math.floor(scrollTop / itemHeight);
     const endIndex = Math.ceil(scrollBottom / itemHeight);
-    setVisibleItems(items.slice(startIndex, endIndex));
+    console.log(startIndex, endIndex);
+
+    setVisibleItems(
+      items.slice(startIndex, endIndex).map((item, index) => {
+        return { ...item, position: startIndex + index };
+      })
+    );
   }
 
   function scrollToTop() {

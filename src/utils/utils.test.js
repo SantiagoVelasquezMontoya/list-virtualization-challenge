@@ -7,9 +7,9 @@ describe('Utilities test', () => {
   });
 
   it('Should generate 1 entry on last position', () => {
-    const lastEntry = 100000;
-    const entry = generateEntry(lastEntry);
-    expect(entry).toContain({ position: lastEntry + 1 });
+    const entry = generateEntry();
+    const entryKeys = Object.keys(entry);
+    expect(entryKeys).toContain('name', 'description', 'price', 'id');
   });
 
   it('Should return the word capitalized', () => {

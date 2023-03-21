@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react';
 import VirtualizedListHeader from './VirtualizedListHeader';
 
 const mockProps = ['name', 'description', 'price'];
-describe('Should run the test', () => {
+describe('List Header', () => {
   it('Should render the component', () => {
     const component = render(<VirtualizedListHeader columns={mockProps} />);
 

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import ListItem from './ListItem';
 
-describe('Should multiply', () => {
+describe('List Item', () => {
   it('Should render the component correctly', () => {
     const mockProps = {
       height: 100,
