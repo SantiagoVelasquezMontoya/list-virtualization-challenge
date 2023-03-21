@@ -9,7 +9,7 @@ describe('Utilities test', () => {
   it('Should generate 1 entry on last position', () => {
     const entry = generateEntry();
     const entryKeys = Object.keys(entry);
-    expect(entryKeys).toContain('name', 'description', 'price', 'id');
+    expect(entryKeys).toContain('name');
   });
 
   it('Should return the word capitalized', () => {

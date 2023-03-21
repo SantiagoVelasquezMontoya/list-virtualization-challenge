@@ -1,5 +1,6 @@
 import App from './App';
-import { screen, render } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 
 describe('App Tests', () => {
   it('Should render the App component', () => {

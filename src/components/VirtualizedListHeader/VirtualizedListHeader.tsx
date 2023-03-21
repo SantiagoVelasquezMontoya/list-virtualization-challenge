@@ -2,7 +2,13 @@ import React from 'react';
 import './VirtualizedListHeader.sass';
 import { capitalize } from '../../utils/utils';
 
-export default function VirtualizedListHeader({ columns }) {
+type VirtualizedListHeaderProps = {
+  columns: string[];
+};
+
+export default function VirtualizedListHeader({
+  columns,
+}: VirtualizedListHeaderProps) {
   const [name, description, price] = columns;
   return (
     <div className='list-header'>

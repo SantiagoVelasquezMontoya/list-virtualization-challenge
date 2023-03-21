@@ -1,7 +1,14 @@
 import React from 'react';
 import './ListItem.sass';
+import { Product } from '../../models/product/Product';
 
-export default function ListItem({ height, position, item }) {
+type ListItemProps = {
+  height: number;
+  position: number;
+  item: Product;
+};
+
+export default function ListItem({ height, position, item }: ListItemProps) {
   return (
     <li
       className='list-item'

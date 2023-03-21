@@ -1,5 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import VirtualizedListHeader from './VirtualizedListHeader';
+import React from 'react';
 
 const mockProps = ['name', 'description', 'price'];
 describe('List Header', () => {

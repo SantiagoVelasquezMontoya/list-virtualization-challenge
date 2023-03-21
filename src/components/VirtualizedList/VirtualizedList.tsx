@@ -2,38 +2,59 @@ import React, { useState, useRef, useEffect } from 'react';
 import './VirtualizedList.sass';
 import ListItem from '../ListItem/ListItem';
 import VirtualizedListHeader from '../VirtualizedListHeader/VirtualizedListHeader';
+import { Product } from '../../models/product/Product';
 
-export default function VirtualizedList({ items, itemHeight, scrollPosition }) {
-  const [visibleItems, setVisibleItems] = useState(
+type VirtualizedListProps = {
+  items: Product[];
+  itemHeight: number;
+};
+
+interface VisibleProduct extends Product {
+  position: number;
+}
+
+const itemOffset = 400;
+export default function VirtualizedList({
+  items,
+  itemHeight,
+}: VirtualizedListProps) {
+  const [visibleItems, setVisibleItems] = useState<VisibleProduct[]>(
     items.slice(0, 6).map((item, index) => {
       return { ...item, position: index };
     })
   );
-  const outerContainerRef = useRef();
+  const [scroll, setScroll] = useState<number>(0);
+
+  const outerContainerRef = useRef<HTMLDivElement>(null);
   const listContainerHeight = items.length * itemHeight;
 
   function handleScroll() {
-    const scrollTop = outerContainerRef.current.scrollTop;
-    const scrollBottom = scrollTop + outerContainerRef.current.clientHeight;
-    const startIndex = Math.floor(scrollTop / itemHeight);
-    const endIndex = Math.ceil(scrollBottom / itemHeight);
-    console.log(startIndex, endIndex);
-
-    setVisibleItems(
-      items.slice(startIndex, endIndex).map((item, index) => {
-        return { ...item, position: startIndex + index };
-      })
-    );
+    const outerContainer = outerContainerRef.current;
+    if (outerContainer !== null) {
+      const scrollTop = outerContainer.scrollTop;
+      const scrollBottom = scrollTop + outerContainer.clientHeight;
+      const startIndex = Math.floor(scrollTop / itemHeight);
+      const endIndex = Math.ceil(scrollBottom / itemHeight);
+      setVisibleItems(
+        items.slice(startIndex, endIndex).map((item, index) => {
+          return { ...item, position: startIndex + index };
+        })
+      );
+    }
   }
 
   function scrollToTop() {
-    outerContainerRef.current.scrollTop = 0;
+    if (outerContainerRef.current != null)
+      outerContainerRef.current.scrollTop = 0;
   }
 
   useEffect(() => {
     //Scroll to last item on the bottom of the list
-    outerContainerRef.current.scrollTop = scrollPosition;
-  }, [scrollPosition]);
+    setScroll(items.length * itemHeight - itemOffset);
+    if (outerContainerRef.current != null) {
+      outerContainerRef.current.scrollTop = scroll;
+    }
+  }, [items.length]);
 
   return (
     <>
